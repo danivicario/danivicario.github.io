@@ -190,7 +190,7 @@ setTimeout(() => {
 }, 2000);
 
 setTimeout(() => {
-  const opacity = 1;
+  let opacity = 1;
 
   const intervalID = setInterval(() => {
     opacity -= 0.05;
