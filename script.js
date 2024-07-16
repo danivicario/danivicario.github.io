@@ -193,7 +193,7 @@ setTimeout(() => {
   let opacity = 1;
 
   const intervalID = setInterval(() => {
-    opacity -= 0.05;
+    opacity -= 0.005;
     document.querySelector("#matterjs-canvas-container").style.opacity =
       opacity;
 
@@ -201,5 +201,5 @@ setTimeout(() => {
       document.querySelector("#matterjs-canvas-container").remove();
       clearInterval(intervalID);
     }
-  });
+  }, 10);
 }, 5000);
