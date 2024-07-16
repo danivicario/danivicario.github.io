@@ -193,7 +193,7 @@ setTimeout(() => {
   let opacity = 1;
 
   const intervalID = setInterval(() => {
-    opacity -= 0.005 / 4;
+    opacity -= 0.005 / 3.5;
     document.querySelector("#matterjs-canvas-container").style.opacity =
       opacity;
 
