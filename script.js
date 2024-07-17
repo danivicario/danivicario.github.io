@@ -167,11 +167,11 @@ function loadPolygon(str, x, y = 0, zoom = 100, fillStyle = "black") {
   );
 }
 
-let ground = Bodies.rectangle(300, h, 800, 60, {
+let ground = Bodies.rectangle(300, h + 30, 800, 60, {
   isStatic: true,
   force: 0,
   render: {
-    fillStyle: "white",
+    fillStyle: "transparent",
   },
 });
 
