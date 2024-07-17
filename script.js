@@ -25,11 +25,22 @@ let Engine = Matter.Engine,
 let engine = Engine.create();
 let world = engine.world;
 
+const w = 600;
+const h = 400;
+const wObj = 265;
+const hObj = 150;
+const w2 = w / 2;
+const h2 = h / 2;
+const wObj2 = wObj / 2;
+const hObj2 = hObj / 2;
+
 // create a renderer
 let render = Render.create({
   element: document.querySelector("#matterjs-canvas-container"),
   engine: engine,
   options: {
+    height: h,
+    width: w,
     wireframes: false,
     background: "rgb(255,255,255)",
     wireframeStrokeStyle: "transparent",
@@ -38,17 +49,11 @@ let render = Render.create({
 
 const canvasDOMEl = document.querySelector("#matterjs-canvas-container canvas");
 
-const w = window.innerWidth;
-const h = window.innerHeight;
-
-canvasDOMEl.setAttribute("height", `${window.innerHeight}px`);
-canvasDOMEl.setAttribute("width", `${window.innerWidth}px`);
-
 let factorX = 50;
 let factorY = 150;
 
-let posX = 260;
-let posY = 103;
+let posX = 12 + w2 - wObj2;
+let posY = -102 + h2 - hObj2;
 
 // O
 loadPath(
@@ -65,20 +70,28 @@ loadPath(
 );
 
 //rotation bit
-loadPath(`M0,35.27L35.27,0l20.84,20.84L20.84,56.11,0,35.27Z`, posX, 87, "red");
+loadPath(
+  `M0,35.27L35.27,0l20.84,20.84L20.84,56.11,0,35.27Z`,
+  posX,
+  posY - 16,
+  "red"
+);
 
-posY = 95;
+posX += 75;
+posY -= 8;
 
 // r
-loadPath(`M31.85,0h50.04v30.71H31.85V0Z`, 335, posY - 16.5, "#A6A1FB");
-loadPath(`M0,0h31.84v112.59H0V0Z`, 320, posY);
+loadPath(`M31.85,0h50.04v30.71H31.85V0Z`, posX, posY - 16.5, "#A6A1FB");
 
-posY = 150;
+posX -= 15;
+loadPath(`M0,0h31.84v112.59H0V0Z`, posX, posY);
+
+posY += 54;
 
 // smile 1
 loadPath(
   `M32.65,53.38c0,162.36,131.61,293.97,293.97,293.97v32.65C146.23,380,0,233.77,0,53.38h32.65Z`,
-  250,
+  posX - 70,
   posY,
   "#02AB4E"
 );
@@ -86,19 +99,19 @@ loadPath(
 // smile 2
 loadPath(
   `M620.55,53.41c0,162.34-131.6,293.94-293.94,293.94v32.65c180.37,0,326.59-146.22,326.59-326.59h-32.65`,
-  408,
+  posX + 87,
   posY
 );
 
 // 1
 loadPath(
   `M82.14.5v133.76h-31.74V42.18l-28.85,28.85L.71,50.2,50.4.5h0s0,0,0,0h0s0,0,0,0h31.74Z`,
-  390,
+  posX + 70,
   posY - 70
 );
 
 // 1 part 2
-loadPath(`M0,0h117.89v30.61H0V0Z`, 392, posY - 36, "#FFB800");
+loadPath(`M0,0h117.89v30.61H0V0Z`, posX + 73, posY - 36, "#FFB800");
 
 function loadPath(str, x, y = 0, fillStyle = "black") {
   loadSvg(
@@ -154,7 +167,7 @@ function loadPolygon(str, x, y = 0, zoom = 100, fillStyle = "black") {
   );
 }
 
-let ground = Bodies.rectangle(400, 610, 810, 60, {
+let ground = Bodies.rectangle(300, h, 800, 60, {
   isStatic: true,
   force: 0,
   render: {
